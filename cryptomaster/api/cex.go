@@ -29,6 +29,6 @@ func GetRate(currency string) (*cryptorate.Rate, error) { // pointer can be nil
 			return nil, err
 		}
 	}
-	crypto := cryptorate.Rate{Currency: currency, Price: response.bid}
+	crypto := cryptorate.Rate{Currency: currency, Price: response.Bid}
 	return &crypto, nil
 }
