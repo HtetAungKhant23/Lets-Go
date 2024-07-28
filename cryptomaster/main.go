@@ -8,6 +8,7 @@ import (
 
 func main() {
 	res, err := api.GetRate("btc")
-	fmt.Println("result ", *res)
-	fmt.Println("err ", err)
+	if err == nil {
+		fmt.Printf("This rate for %v is %.2f \n", res.Currency, res.Price)
+	}
 }
