@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -22,8 +23,11 @@ func GetRate(currency string) (*cryptorate.Rate, error) { // pointer can be nil
 		if err != nil {
 			return nil, err
 		}
-		json := string(bodyBytes)
-		fmt.Println("Json ", json)
+		var cryptoRate cryptorate.Rate
+		err = json.Unmarshal(bodyBytes, &cryptoRate) // json parse
+		if err != nil {
+			return nil, err
+		}
 	}
 	crypto := cryptorate.Rate{Currency: currency, Price: 20}
 	return &crypto, nil
