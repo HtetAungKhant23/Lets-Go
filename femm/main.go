@@ -13,6 +13,10 @@ func main() {
 	server := http.NewServeMux()
 	server.HandleFunc("/hello", getHello)
 
+	// using file server Handler to serve static file automatically
+	fs := http.FileServer(http.Dir("./public"))
+	server.Handle("/", fs)
+
 	err := http.ListenAndServe(":4004", server)
 	if err != nil {
 		fmt.Println(err)
