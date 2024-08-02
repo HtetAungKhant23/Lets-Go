@@ -10,9 +10,10 @@ func getHello(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/hello", getHello)
+	server := http.NewServeMux()
+	server.HandleFunc("/hello", getHello)
 
-	err := http.ListenAndServe(":4004", nil)
+	err := http.ListenAndServe(":4004", server)
 	if err != nil {
 		fmt.Println(err)
 	}
