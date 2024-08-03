@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/htetaungkhant/go/museum/data"
 	"html/template"
 	"net/http"
 )
@@ -17,7 +18,7 @@ func handleTemplate(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Internal server error."))
 		return
 	}
-	html.Execute(w, "Testing One Two Three")
+	html.Execute(w, data.GetAll()[1])
 }
 
 func main() {
@@ -33,4 +34,5 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println("server is running...")
 }
