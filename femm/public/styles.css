@@ -4,6 +4,10 @@ body {
     padding: 0 40px;
 }
 
+.closed {
+    opacity: 0.2;
+}
+
 article {
     margin: 18px;
     padding: 18px;
