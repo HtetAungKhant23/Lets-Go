@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/htetaungkhant/go/museum/api"
 	"github.com/htetaungkhant/go/museum/data"
 	"html/template"
 	"net/http"
@@ -25,6 +26,7 @@ func main() {
 	server := http.NewServeMux()
 	server.HandleFunc("/hello", getHello)
 	server.HandleFunc("/template", handleTemplate)
+	server.HandleFunc("/api/exhibition", api.Get)
 
 	// using file server Handler to serve static file automatically
 	fs := http.FileServer(http.Dir("./public"))
