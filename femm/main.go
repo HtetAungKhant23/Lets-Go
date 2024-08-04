@@ -27,6 +27,7 @@ func main() {
 	server.HandleFunc("/hello", getHello)
 	server.HandleFunc("/template", handleTemplate)
 	server.HandleFunc("/api/exhibition", api.Get)
+	server.HandleFunc("/api/exhibition/new", api.Post)
 
 	// using file server Handler to serve static file automatically
 	fs := http.FileServer(http.Dir("./public"))
