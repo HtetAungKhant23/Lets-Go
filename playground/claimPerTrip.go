@@ -2,7 +2,7 @@ package main
 
 var mmkPerTrip int = 500
 
-func claimPerTrip(trip int) (totalAmount int) {
+func ClaimPerTrip(trip int) (totalAmount int) {
 	if trip >= 80 {
 		totalAmount = calcMMK(80, trip)
 	} else if trip >= 50 {
@@ -12,7 +12,11 @@ func claimPerTrip(trip int) (totalAmount int) {
 	} else {
 		totalAmount = trip * mmkPerTrip
 	}
-	return totalAmount
+	if totalAmount > 0 {
+		return totalAmount
+	} else {
+		return 0
+	}
 }
 
 func calcMMK(limit int, trip int) (total int) {
