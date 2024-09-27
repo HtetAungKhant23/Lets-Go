@@ -101,6 +101,34 @@ func printEmployeeData(e employee) {
 	fmt.Println("Name", e.getName(), "And Salary", e.getSalary())
 }
 
+// ------- type implement multiple interface ----------
+
+type Speaker interface {
+	Speak() string
+}
+
+type Walker interface {
+	Walk() string
+}
+
+type Robot struct {
+	name string
+}
+
+func (r *Robot) Speak() string {
+	return fmt.Sprintf("Beep beep! I am %s", r.name)
+}
+
+func (r *Robot) Walk() string {
+	return fmt.Sprintf("%s can walk", r.name)
+}
+
+func printRobotData(s Speaker, w Walker) {
+	fmt.Println(s.Speak())
+	fmt.Println(w.Walk())
+
+}
+
 func main() {
 	c := circle{2}
 	r := rect{12, 21}
@@ -119,4 +147,8 @@ func main() {
 
 	printEmployeeData(&con)
 	printEmployeeData(&ft)
+
+	rob := Robot{"He He Robot"}
+	printRobotData(&rob, &rob)
+
 }
