@@ -65,11 +65,47 @@ func printMessage(m message) {
 	fmt.Println(m.getMessage())
 }
 
+type employee interface {
+	getName() string
+	getSalary() int
+}
+
+type contractor struct {
+	name         string
+	hourlyPay    int
+	hoursPerYear int
+}
+
+func (c *contractor) getName() string {
+	return c.name
+}
+
+func (c *contractor) getSalary() int {
+	return c.hourlyPay * c.hoursPerYear
+}
+
+type fullTime struct {
+	name   string
+	salary int
+}
+
+func (ft *fullTime) getSalary() int {
+	return ft.salary
+}
+
+func (ft *fullTime) getName() string {
+	return ft.name
+}
+
+func printEmployeeData(e employee) {
+	fmt.Println("Name", e.getName(), "And Salary", e.getSalary())
+}
+
 func main() {
 	c := circle{2}
 	r := rect{12, 21}
 
-	printShapeData(&c)
+	printShapeData(&c) // cause of pointer receiver
 	printShapeData(r)
 
 	bm := birthdayMessage{time.Now(), "hak"}
@@ -78,4 +114,9 @@ func main() {
 	printMessage(&bm)
 	printMessage(&sr)
 
+	con := contractor{"Hak", 50, 2900}
+	ft := fullTime{"Wu", 2000}
+
+	printEmployeeData(&con)
+	printEmployeeData(&ft)
 }
