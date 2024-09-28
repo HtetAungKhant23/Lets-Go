@@ -39,7 +39,7 @@ func (i invalid) cost() float64 {
 }
 
 func getExpenseExport(e expense) (string, float64) {
-	switch v := e.(type) {
+	switch v := e.(type) { // using type switch
 	case email:
 		return v.toAddress, v.cost()
 	case sms:
