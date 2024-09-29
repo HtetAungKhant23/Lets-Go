@@ -85,6 +85,58 @@ func sendMessage(formatter Formatter) string {
 	return formatter.Format()
 }
 
+// ----------------- Exercise Process Notification -------------------
+
+type notification interface {
+	importance() int
+}
+
+type directMessage struct {
+	senderUsername string
+	messageContent string
+	priorityLevel  int
+	isUrgent       bool
+}
+
+type groupMessage struct {
+	groupName      string
+	messageContent string
+	priorityLevel  int
+}
+
+type systemAlert struct {
+	alertCode      string
+	messageContent string
+}
+
+func (d *directMessage) importance() int {
+	if d.isUrgent {
+		return 50
+	}
+	return d.priorityLevel
+}
+
+func (g *groupMessage) importance() int {
+	return g.priorityLevel
+}
+
+func (s *systemAlert) importance() int {
+	return 100
+}
+
+func processNotification(n notification) (string, int) {
+	switch m := n.(type) {
+	case *directMessage:
+		return m.senderUsername, m.importance()
+	case *groupMessage:
+		return m.groupName, m.importance()
+	case *systemAlert:
+		return m.alertCode, m.importance()
+	default:
+		return "", 0
+	}
+}
+
 func main() {
 	//s := sms{true, "this is sms body", "09123456780"}
 	//st, co := getExpenseExport(&s)
@@ -92,7 +144,11 @@ func main() {
 
 	//p := PlainText{"Wu shu war!"}
 	//p := Bold{"Wu shu war!"}
-	p := Code{"Wu shu war!"}
-	fmt.Println(sendMessage(&p))
+	//p := Code{"Wu shu war!"}
+	//fmt.Println(sendMessage(&p))
+
+	dm := directMessage{"hak", "heheharharhuu", 17, false}
+	name, score := processNotification(&dm)
+	fmt.Println(name, score)
 
 }
