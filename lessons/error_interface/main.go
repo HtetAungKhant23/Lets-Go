@@ -24,7 +24,29 @@ func sendSMS(message string) (int, error) {
 	return costPerChar * len(message), nil
 }
 
+// ------------------ custom error ------------------
+
+type divideError struct {
+	dividend float64
+}
+
+// custom error by implementing built-in Error interface
+func (e *divideError) Error() string {
+	return fmt.Sprintf("can not divide %v by zero", e.dividend)
+}
+
+func divide(dividend, divisor float64) (float64, error) {
+	if divisor == 0 {
+		return 0, &divideError{dividend: dividend}
+	}
+	return dividend / divisor, nil
+}
+
 func main() {
-	totalCost, err := sendSMSToCouple("Good Shal asdfa asdfqe2 aswer asdzcarg asdfrqsf", "Shal Good kwar")
-	fmt.Println(totalCost, err)
+	//totalCost, err := sendSMSToCouple("Good Shal asdfa asdfqe2 aswer asdzcarg asdfrqsf", "Shal Good kwar")
+	//fmt.Println(totalCost, err)
+
+	d := divideError{8}
+	res, err := divide(d.dividend, 0)
+	fmt.Println(res, err)
 }
