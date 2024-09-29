@@ -51,8 +51,48 @@ func getExpenseExport(e expense) (string, float64) {
 	}
 }
 
+// ----------------- Exercise Message Formatter -------------------
+
+type Formatter interface {
+	Format() string
+}
+
+type PlainText struct {
+	message string
+}
+
+type Bold struct {
+	message string
+}
+
+type Code struct {
+	message string
+}
+
+func (p *PlainText) Format() string {
+	return fmt.Sprintf("The message is %s", p.message)
+}
+
+func (b *Bold) Format() string {
+	return fmt.Sprintf("*%s*", b.message)
+}
+
+func (c *Code) Format() string {
+	return fmt.Sprintf("`%s`", c.message)
+}
+
+func sendMessage(formatter Formatter) string {
+	return formatter.Format()
+}
+
 func main() {
-	s := sms{true, "this is sms body", "09123456780"}
-	st, co := getExpenseExport(&s)
-	fmt.Println(st, co)
+	//s := sms{true, "this is sms body", "09123456780"}
+	//st, co := getExpenseExport(&s)
+	//fmt.Println(st, co)
+
+	//p := PlainText{"Wu shu war!"}
+	//p := Bold{"Wu shu war!"}
+	p := Code{"Wu shu war!"}
+	fmt.Println(sendMessage(&p))
+
 }
