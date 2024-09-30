@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func sendSMSToCouple(msgToCustomer, msgToSpouse string) (int, error) {
 	costForCus, err := sendSMS(msgToCustomer)
@@ -40,6 +43,15 @@ func divide(dividend, divisor float64) (float64, error) {
 		return 0, &divideError{dividend: dividend}
 	}
 	return dividend / divisor, nil
+}
+
+func validateStatus(status string) error {
+	if status == "" {
+		return errors.New("status cannot be empty")
+	} else if len(status) > 140 {
+		return errors.New("status exceeds 140 characters")
+	}
+	return nil
 }
 
 func main() {
