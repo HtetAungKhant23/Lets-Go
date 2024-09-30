@@ -32,6 +32,11 @@ func getMessageWithRetriesForPlan(plan string, messages [3]string) ([]string, er
 	}
 }
 
+// Slices hold references to an underlying array
+func manipulate(slice []int, num int) {
+	slice[1] = num
+}
+
 func main() {
 	//pri := "Hello sir/madam can I interest you in a yacht?"
 	//sec := "Please I'll even give you an Amazon gift card?"
@@ -41,11 +46,16 @@ func main() {
 	//
 	//fmt.Println(strArr, costArr)
 
-	slice, err := getMessageWithRetriesForPlan("", [3]string{
-		"Hello sir/madam can I interest you in a yacht?",
-		"Please I'll even give you an Amazon gift card?",
-		"You're missing out big time",
-	})
+	//slice, err := getMessageWithRetriesForPlan("", [3]string{
+	//	"Hello sir/madam can I interest you in a yacht?",
+	//	"Please I'll even give you an Amazon gift card?",
+	//	"You're missing out big time",
+	//})
+	//
+	//fmt.Println(slice, err)
 
-	fmt.Println(slice, err)
+	ar := [5]int{1, 2, 3, 4, 5}
+	fmt.Println(ar)
+	manipulate(ar[:], 10)
+	fmt.Println(ar)
 }
