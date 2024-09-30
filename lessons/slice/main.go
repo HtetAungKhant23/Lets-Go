@@ -40,12 +40,28 @@ func manipulate(slice []int, num int) {
 
 func getMessageCosts(messages []string) []float64 {
 	length := len(messages)                    // number of elements it contains
-	capacity := cap(messages)                  // number of elements in the underlying array, counting from the first element in the slice
+	capacity := cap(messages)                  // reports the maximum length the slice may assume. The number of elements in the underlying array, counting from the first element in the slice
 	costs := make([]float64, length, capacity) // the capacity argument is usually omitted and defaults to the length
 	for i := 0; i < length; i++ {
 		costs[i] = float64(len(messages[i])) * 0.01
 	}
 	return costs
+}
+
+// ---------------- How Append method implemented --------------
+
+func Append(slice, data []byte) []byte {
+	l := len(slice)
+	if l+len(data) > cap(slice) { // reallocate
+		// Allocate double what's needed, for future growth.
+		newSlice := make([]byte, (l+len(data))*2)
+		// The copy function is predeclared and works for any slice type.
+		copy(newSlice, slice)
+		slice = newSlice
+	}
+	slice = slice[0 : l+len(data)]
+	copy(slice[l:], data)
+	return slice
 }
 
 func main() {
