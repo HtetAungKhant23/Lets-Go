@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// -------- you're dealing with pointers you should check if it's nil before trying to dereference it. ---------------
+
 type Message struct {
 	Recipient string
 	Text      string
