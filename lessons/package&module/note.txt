@@ -1,0 +1,23 @@
+Package
+---------
+A directory of Go code can have at most one package.
+By convention, we name our package the same as the directory.
+All .go files in a single directory must all belong to the same package.
+Directory of Go code that's all compiled together.
+
+Module
+---------
+A repository contains one or more modules.
+A module is a collection of Go packages that are released together.
+
+Go Build
+---------
+One of the beauties of Go is that you always go build for production,
+ and because the output is a statically compiled binary,
+ you can ship it to production or end users without them needing the Go toolchain installed.
+
+Go Install
+---------
+Compiles and installs a package or packages on your local machine for your personal usage.
+It installs the package's compiled binary in the GOBIN directory.
+
