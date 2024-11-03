@@ -1,0 +1,22 @@
+Channel
+---------
+- Channels are a typed, thread-safe queue.
+- Channels allow different goroutines to communicate with each other.
+
+Send data to a channel
+------------------------
+- eg: ch <- 69
+- The <- operator is called the channel operator.
+- Data flows in the direction of the arrow.
+- This operation will block until another goroutine is ready to receive the value.
+
+Receive data from a channel
+------------------------
+- eg: v := <-ch
+- This reads and removes a value from the channel and saves it into the variable v.
+- This operation will block until there is a value in the channel to be read.
+
+Blocking and deadlocks
+------------------------
+- A deadlock is when a group of goroutines are all blocking so none of them can continue.
+- This is a common bug that you need to watch out for in concurrent programming.
