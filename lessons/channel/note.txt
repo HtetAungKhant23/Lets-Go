@@ -1,7 +1,14 @@
+Goroutine
+---------
+- Goroutines are lightweight threads managed by the Go runtime.
+- When you start a goroutine (using the go keyword), it runs a function concurrently with the rest of your program.
+- They’re ideal for tasks that can run in parallel, like waiting for multiple databases to start.
+
 Channel
 ---------
-- Channels are a typed, thread-safe queue.
-- Channels allow different goroutines to communicate with each other.
+- Channels in Go provide a way for goroutines to communicate with each other and synchronize their execution.
+- Think of channels as pipes that allow you to send values from one goroutine to another.
+- Channels are typed, (thread-safe queue) meaning they can only carry a specific type of data (like int, string, or even an empty struct struct{}).
 
 Send data to a channel
 ------------------------
