@@ -11,8 +11,10 @@ type email struct {
 }
 
 func checkEmailAge(emails [3]email) [3]bool {
-	isOldChan := make(chan bool, 3) // buffer channel to prevent deadlock
+	isOldChan := make(chan bool)
 
+	// checkEmailAge function reads from the channel synchronously until sendIsOld function is completely finished
+	// and so use goroutine infront of sendIsOld function call
 	go sendIsOld(isOldChan, emails)
 
 	isOld := [3]bool{}
