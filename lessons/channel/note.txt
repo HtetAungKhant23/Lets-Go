@@ -85,3 +85,41 @@ Select Channel (listening to multiple channel at the same time)
 - The first channel with a value ready to be received will fire and its body will execute.
 - If multiple channels are ready at the same time one is chosen randomly.
 - The ok variable in the example above refers to whether or not the channel has been closed by the sender yet.
+
+Default in Select Channel
+-------------------------------
+- The default case in a select statement executes immediately if no other channel has a value ready.
+- A default case stops the select statement from blocking.
+
+
+
+Read Only Channel
+----------------------
+- A channel can be marked as read-only by casting it from a "chan" to a "<-chan" type.
+- eg:   func main() {
+            ch := make(chan int)
+            readCh(ch)
+        }
+
+        func readCh(ch <-chan int) {
+            // ch can only be read from
+            // in this function
+        }
+
+
+Write Only Channel
+----------------------
+- The same goes for write-only channels, but the arrow's position moves.
+- eg:   func writeCh(ch chan<- int) {
+            // ch can only be written to
+            // in this function
+        }
+
+
+
+standard library function (Time)
+[
+    - time.Tick() is a standard library function that returns a channel that sends a value on a given interval.
+    - time.After() sends a value once after the duration has passed.
+    - time.Sleep() blocks the current goroutine for the specified duration of time.
+]
