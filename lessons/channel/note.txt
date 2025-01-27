@@ -123,3 +123,30 @@ standard library function (Time)
     - time.After() sends a value once after the duration has passed.
     - time.Sleep() blocks the current goroutine for the specified duration of time.
 ]
+
+
+Extra things I should understand about Channel
+-----------------x------------x-----------------
+1. A Declared but Uninitialized Channel Is Nil jsut like a Slice
+- eg:   var s []int       // s is nil
+        var c chan string // c is nil
+        var s = make([]int, 5) // s is initialized and not nil
+        var c = make(chan int) // c is initialized and not nil
+
+2. A Send to a Nil Channel Blocks Forever
+- eg:   var c chan string        // c is nil
+        c <- "let's get started" // sender will blocks forever
+
+3. A Receive from a Nil Channel Blocks Forever
+- eg:   var c chan string        // c is nil
+        fmt.Println(<-c)         // receiver will blocks forever
+
+4. A Send to a Closed Channel Panics
+- eg:   var c = make(chan int, 100)
+        close(c)
+        c <- 1                   // panic: send on closed channel
+
+5. A Receive from a Closed Channel Returns the Zero value Immediately
+- eg:   var c = make(chan int, 100)
+        close(c)
+        fmt.Println(<-c) // 0
