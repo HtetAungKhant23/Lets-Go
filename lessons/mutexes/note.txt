@@ -20,8 +20,18 @@ Mutexes
 - Mutexes are powerful. Like most powerful things, they can also cause many bugs if used carelessly.
 
 
-
 Maps (Not Thread-Safe)
 -----------------------
 - Maps are not safe for concurrent use!
 - If you have multiple goroutines accessing the same map, and at least one of them is writing to the map, you must lock your maps with a mutex.
+
+
+
+RW Mutex
+--------------
+- The sync.RWMutex also has these methods for concurrent reads:
+        .RLock()
+        .RUnlock()
+
+- The sync.RWMutex improves performance in read-intensive processes.
+- Multiple goroutines can safely read from the map simultaneously, as many RLock() calls can occur at the same time. - However, only one goroutine can hold a Lock(), and during this time, all RLock() operations are blocked
