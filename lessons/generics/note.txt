@@ -1,0 +1,14 @@
+Generic
+----------
+
+- generics allow us to use variables to refer to specific types.
+- This is an amazing feature because it allows us to write abstract functions that drastically reduce code duplication.
+- eg:   func splitAnySlice[T any](s []T) ([]T, []T) {
+            mid := len(s)/2
+            return s[:mid], s[mid:]
+        }
+
+Zero Value of a Type
+-----------------------
+- Creating a variable that's the zero value of a type is easy:
+- eg:   var myZero T
