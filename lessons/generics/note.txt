@@ -8,6 +8,15 @@ Generic
             return s[:mid], s[mid:]
         }
 
+
+Constraints
+--------------
+- Constraints are just interfaces that allow us to write generics that only operate within the constraints of a given interface type.
+- In the example above, the any constraint is the same as the empty interface because it means the type in question can be anything.
+
+
+
+
 Zero Value of a Type
 -----------------------
 - Creating a variable that's the zero value of a type is easy:
