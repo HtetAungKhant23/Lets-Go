@@ -1,0 +1,15 @@
+Type Definition
+
+- In Go, we don't have these nice things. We embrace the Grug mentality. The closest thing we have to a union type is a type definition:
+- eg:
+        type sendingChannel string
+
+        const (
+            Email sendingChannel = "email"
+            SMS   sendingChannel = "sms"
+            Phone sendingChannel = "phone"
+        )
+
+        func sendNotification(ch sendingChannel, message string) {
+            // send the message
+        }
