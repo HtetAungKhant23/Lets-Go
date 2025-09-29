@@ -1,4 +1,4 @@
-// message tagger exercise
+// message tagger exe1
 
 //1. Complete the tagMessages function. It should take a slice of sms messages, and a function (that takes a sms as input and returns a slice of strings) as inputs.
 //And it should return a slice of sms messages.
